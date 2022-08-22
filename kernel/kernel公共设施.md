@@ -1,0 +1,13 @@
+# 内核公共函数以及公共宏定义
+
+内核版本5.17.5
+
+## cpu 相关
+
+- `cpu_possible_map`:机器上最大的`cpu`数量，包括机器上的`cpu`和可热插拔的`cpu`.`for_each_possible_cpu`遍历`cpu_possible_map`.
+
+- `cpu_present_map`:机器上当前`cpu`数量.`for_each_present_cpu`遍历`cpu_present_map`.
+
+- `cpu_online_map`:机器上可以使用的`cpu`数量.`for_each_online_cpu`遍历`cpu_online_map`.
+
+
