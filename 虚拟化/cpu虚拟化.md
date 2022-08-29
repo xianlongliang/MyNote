@@ -198,7 +198,7 @@ static struct kvm_x86_ops vmx_x86_ops __initdata = {
   - `cpu_has_vmx_ept`和`cpu_has_vmx_apicv`:根据`vmcs_config`和`MSR`值来设置某些全局变量，比如是否支持`EPT`的`enable_ept`变量()。
   - `kvm_configure_mmu`:根据全局变量`enable_ept`设置全局变量`tdp_enabled`以及`max_huge_page_level`。
   - `alloc_kvm_area()`:分配`vmxon`区域，并且放到`vmxarea`这个`percpu`变量中。
-  
+
 - `check_processor_compat`:检测所有的逻辑`cpu`的`vmcs`是否一致。
 
 - `misc_register`:注册`misc`设备`/deev/kvm`。
@@ -459,14 +459,14 @@ static struct file_operations kvm_vm_fops = {
 - `kvm_get_kvm(kvm)`:每创建一个`vCPU`就将该虚拟机对应`kvm->users_count`加`1`。
 
 - **`create_vcpu_fd(vcpu)`**:为新创建的`vcpu`关联一个匿名文件并且返回此匿名文件的文件描述符作为当前`vcpu`的`fd`，此`fd`返回给`kvmtool`使用；此`fd`关联的`file_operations`为`kvm_vcpu_fops`:
-
+  
   ```c
   static struct file_operations kvm_vcpu_fops = {
-  	.release        = kvm_vcpu_release,
-  	.unlocked_ioctl = kvm_vcpu_ioctl,
-  	.mmap           = kvm_vcpu_mmap,
-  	.llseek		= noop_llseek,
-  	KVM_COMPAT(kvm_vcpu_compat_ioctl),
+      .release        = kvm_vcpu_release,
+      .unlocked_ioctl = kvm_vcpu_ioctl,
+      .mmap           = kvm_vcpu_mmap,
+      .llseek        = noop_llseek,
+      KVM_COMPAT(kvm_vcpu_compat_ioctl),
   };
   ```
 
