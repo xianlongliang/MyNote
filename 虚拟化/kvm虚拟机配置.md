@@ -5,7 +5,7 @@
 ```xml
 <cpu mode='host-model'>
     <model fallback='allow'/>
-    <feature policy='require' name='vmx'>
+    <feature policy='require' name='vmx'/>
     <topology sockets='2' core='8' threads='1'/>
     <numa>
         <cell id='0' cpus='0-7' memory='6291456' unit='KiB'/>
